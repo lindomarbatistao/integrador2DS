@@ -24,7 +24,7 @@ def upload_csv_view(request):
             else:
                 # Processa o arquivo CSV
                 file_data = csv_file.read().decode('ISO-8859-1').splitlines()
-                reader = csv.DictReader(file_data, delimiter=';')  # Altere para ',' se necessário
+                reader = csv.DictReader(file_data, delimiter=',')  # Altere para ',' se necessário
                 
                 for row in reader:
                     try:
