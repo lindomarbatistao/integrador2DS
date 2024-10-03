@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Adicionando o formulário -->
+    <form id="userForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" ><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit',
+            function (event) {
+                event.preventDefault();
+                var username = document.getElementById('username').value;
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                var formData = new FormData();
+                formData.append('username', username);
+                formData.append('email', email);
+                formData.append('password', password);
+                axios.post('http://localhost:8000/api/create_user/', formData, {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa("lin:123")
+                    }
+                })
+                    .then(response => {
+                        alert('Usuário cadastrado com sucesso!');
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        alert('Erro ao cadastrar usuário');
+                    });
+            });
+    </script>
+    
+</body>

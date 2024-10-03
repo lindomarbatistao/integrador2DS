@@ -4,8 +4,6 @@ from .forms import CSVUploadForm
 import csv 
 from .models import Sensor
 
-
-
 def abre_index(request):
     mensagem = "OLÁ TURMA, SEJAM FELIZES SEMPRE!"
     return HttpResponse(mensagem)
