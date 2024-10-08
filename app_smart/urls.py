@@ -5,6 +5,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from app_smart.api.viewsets import CreateUserAPIViewSet, SensorViewSet
 from rest_framework.routers import DefaultRouter
 from .views import upload_csv_view
+from app_smart.api.filters import SensorFilterView
 
 router = DefaultRouter()	
 router.register(r'sensores', SensorViewSet)
@@ -16,6 +17,7 @@ urlpatterns = [
  path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
  path('api/', include(router.urls)),
  path('api/upload_csv/', upload_csv_view, name='upload_csv'),
+ path('api/sensor_filter/', SensorFilterView.as_view(), name='sensor_filter'),
 ]
 
 
