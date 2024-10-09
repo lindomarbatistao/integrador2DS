@@ -30,12 +30,12 @@ class SensorFilterView(APIView):
         filters = Q()  # Inicializa um filtro vazio         
         if tipo:             
             filters &= Q(tipo__icontains=tipo)         
-            if localizacao:
-                filters &= Q(localizacao__icontains=localizacao)         
+        if localizacao:
+            filters &= Q(localizacao__icontains=localizacao)         
         if responsavel:             
             filters &= Q(responsavel__icontains=responsavel)         
-            if status_operacional is not None:             
-                filters &= Q(status_operacional=status_operacional)
+        if status_operacional is not None:             
+            filters &= Q(status_operacional=status_operacional)
         queryset = Sensor.objects.filter(filters)
         serializer = serializers.SensorSerializer(queryset, many=True)
         return Response(serializer.data)

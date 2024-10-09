@@ -2,13 +2,21 @@ from django.urls import path, include
 from . import views
 from app_smart.api.viewsets import CreateUserAPIViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from app_smart.api.viewsets import CreateUserAPIViewSet, SensorViewSet
+from app_smart.api.viewsets import CreateUserAPIViewSet
 from rest_framework.routers import DefaultRouter
 from .views import upload_csv_view
 from app_smart.api.filters import SensorFilterView
 
+from app_smart.api.viewsets import (
+    CreateUserAPIViewSet,
+    SensorViewSet,
+    TemperaturaDataViewSet
+)
+
+
 router = DefaultRouter()	
 router.register(r'sensores', SensorViewSet)
+router.register(r'temperatura', TemperaturaDataViewSet)
 
 urlpatterns = [
  path('', views.abre_index, name='abre_index'),
