@@ -4,19 +4,19 @@ from app_smart.api.viewsets import CreateUserAPIViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from app_smart.api.viewsets import CreateUserAPIViewSet
 from rest_framework.routers import DefaultRouter
-from .views import upload_csv_view
+from .views import upload_csv_view, load_temperature_data
 from app_smart.api.filters import SensorFilterView
 
 from app_smart.api.viewsets import (
     CreateUserAPIViewSet,
     SensorViewSet,
-    TemperaturaDataViewSet
+    # TemperaturaDataViewSet
 )
 
 
 router = DefaultRouter()	
 router.register(r'sensores', SensorViewSet)
-router.register(r'temperatura', TemperaturaDataViewSet)
+# router.register(r'temperatura', load_temperature_data)
 
 urlpatterns = [
  path('', views.abre_index, name='abre_index'),
@@ -26,6 +26,7 @@ urlpatterns = [
  path('api/', include(router.urls)),
  path('api/upload_csv/', upload_csv_view, name='upload_csv'),
  path('api/sensor_filter/', SensorFilterView.as_view(), name='sensor_filter'),
+ path('api/temperatura/', load_temperature_data, name='temperatura_data')
 ]
 
 
